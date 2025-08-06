@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'adress.dart';
-import 'error.dart';
+import 'adressPage.dart';
+import 'errorPage.dart';
 
-class NextPage extends StatelessWidget {
+class LoadPage extends StatelessWidget {
 
-  NextPage(String zipcode, BuildContext context)
+  LoadPage(String zipcode, BuildContext context)
   {
     showData(zipcode, context);
   }
@@ -14,15 +14,16 @@ class NextPage extends StatelessWidget {
   void showData(String zipcode, BuildContext context) async {
     try {
       String jsonData = await getRequest(zipcode);
-      var data = json.decode(jsonData)["results"][0];
+      var data = json.decode(jsonData)["results"];
+      if (data == null) throw Exception('There is no zip code "$zipcode"');
       Navigator.push(
         context, 
-        MaterialPageRoute(builder: (context) => Adress(zipcode, data)),
+        MaterialPageRoute(builder: (context) => AdressPage(zipcode, data)),
       );
     } catch (e) {
       Navigator.push(
         context, 
-        MaterialPageRoute(builder: (context) => Error(zipcode, e.toString())),
+        MaterialPageRoute(builder: (context) => ErrorPage(zipcode, e.toString())),
       );
     }
   }

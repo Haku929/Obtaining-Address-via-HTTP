@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'next.dart';
+import 'load.dart';
 
 String zipcode = '';
 void main() {
@@ -26,9 +26,12 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context){
     return Center(
       child: Column(
+        // 画面中央に表示する
         mainAxisSize: MainAxisSize.min,
         children: [
+          // 郵便番号を入力するテキストフィールド
           TextField(
+            // テキストフィールドの装飾
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Enter zipcode',
@@ -41,7 +44,7 @@ class Home extends StatelessWidget {
             onPressed: () async {
               Navigator.push(
                 context, 
-                MaterialPageRoute(builder: (context) => NextPage(zipcode, context)), // ここでawaitを使っている
+                MaterialPageRoute(builder: (context) => LoadPage(zipcode, context)),
               );
             },
             child: Text("Search"),
