@@ -18,7 +18,7 @@ class LoadPage extends StatelessWidget {
       if (data == null) throw Exception('There is no zip code "$zipcode"');
       Navigator.push(
         context, 
-        MaterialPageRoute(builder: (context) => AdressPage(zipcode, data)),
+        MaterialPageRoute(builder: (context) => AdressPage(zipcode, data[0])),
       );
     } catch (e) {
       Navigator.push(

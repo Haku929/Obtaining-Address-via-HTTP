@@ -33,8 +33,10 @@ class Home extends StatelessWidget {
           TextField(
             // テキストフィールドの装飾
             decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Enter zipcode',
+              labelText: "郵便番号",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
             ),
             onChanged: (text) {
               zipcode = text;
